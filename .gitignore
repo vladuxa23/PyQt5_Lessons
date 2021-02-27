@@ -1,5 +1,5 @@
 *.idea/*
 *venv/*
-*.docx*
+*descriptions.docx*
 *.pptx*
 *__pycache__*
