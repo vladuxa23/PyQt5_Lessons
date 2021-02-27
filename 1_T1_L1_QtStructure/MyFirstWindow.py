@@ -4,7 +4,7 @@ from PySide2 import QtWidgets
 
 class MyFirstWindow(QtWidgets.QMainWindow):
 
-    def __int__(self, parent=None):
+    def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
 
 
