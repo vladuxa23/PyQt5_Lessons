@@ -2,3 +2,4 @@
 *venv/*
 *.docx*
 *.pptx*
+*__pycache__*
