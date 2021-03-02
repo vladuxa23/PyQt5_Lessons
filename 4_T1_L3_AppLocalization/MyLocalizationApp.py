@@ -2,16 +2,14 @@ import sys
 from functools import partial
 from PySide2 import QtCore, QtWidgets
 
+# https://github.com/thurask/Qt-Linguist/releases/download/20201205/linguist_5.15.2.zip
+# lupdate main.py -ts to_en.ts
+# lrelease to_en2.ts to_en.qm
 
 class MyTranslateApp(QtWidgets.QMainWindow):
     """Основное окно программы-прототипа для тестирования класса QtCore.Qtranslator"""
     def __init__(self):
         """Функция-конструктор класса, где роисходит инициализация необходимых переменных"""
-
-        # https://github.com/thurask/Qt-Linguist/releases/download/20201205/linguist_5.15.2.zip
-        # lupdate main.py -ts to_en.ts
-        # lrelease to_en2.ts to_en.qm
-
         super().__init__()
         self.initUI()  # Инициализируем дизайн приложения
 
@@ -25,7 +23,6 @@ class MyTranslateApp(QtWidgets.QMainWindow):
         self.button_ru.clicked.connect(partial(self.setLocalization, "ru"))  # Устанавливем слот который срабатывает при
         self.button_en.clicked.connect(partial(self.setLocalization, "en"))  # генерации сигнала кнопками button_ru и
         # button_en
-
 
     def initUI(self):
         """Функция инициализирует элементы дизайна приложения"""
