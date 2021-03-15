@@ -4,6 +4,7 @@ from PySide2 import QtCore, QtWidgets, QtGui
 
 def print_something():
     print("Вызов функции")
+
 class MySignalsExample(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)

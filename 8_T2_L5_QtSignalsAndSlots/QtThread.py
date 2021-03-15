@@ -26,17 +26,17 @@ class MyApp(QtWidgets.QMainWindow):
 
         self.t.mysignal.connect(self.setLineEditText, QtCore.Qt.QueuedConnection)
 
-    def setLineEditText(self, text):
-        self.lineEdit.setText(text)
+    # def setLineEditText(self, text):
+    #     self.lineEdit.setText(text)
 
     @QtCore.Slot()
-    # def myTimer(self):
-    #     for _ in range(1000, 0, -1):
-    #         self.lineEdit.setText(str(_))
-    #         time.sleep(1)
-    #         QtWidgets.QApplication.processEvents()
-    def stopThread(self):
-        self.t.status = False
+    def myTimer(self):
+        for _ in range(1000, 0, -1):
+            self.lineEdit.setText(str(_))
+            time.sleep(1)
+            QtWidgets.QApplication.processEvents()
+    # def stopThread(self):
+    #     self.t.status = False
 
 
 class TestThread(QtCore.QThread):

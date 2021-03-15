@@ -10,7 +10,7 @@ class MyEventHandler(QtWidgets.QMainWindow):
         self.button2 = QtWidgets.QPushButton("2", self)
         self.button2.move(0, 50)
 
-        self.someButton.installEventFilter(self)
+
 
 
         self.button2.installEventFilter(self)
