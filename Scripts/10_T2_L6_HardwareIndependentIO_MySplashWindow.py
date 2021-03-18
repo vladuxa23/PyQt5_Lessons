@@ -10,7 +10,7 @@ class MySpalshExample(QtWidgets.QMainWindow):
         for _ in range(100):
             time.sleep(0.05)
             if (_ % 10) == 0:
-                sp.showMessage(f"Загрузка данных... {_}%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
+                sp.showMessage(f"Загрузка данных... {_}%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter, QtCore.Qt.white)
 
 
     def resizeEvent(self, event:QtGui.QResizeEvent) -> None:
@@ -21,7 +21,7 @@ class MySpalshExample(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
-    splash = QtWidgets.QSplashScreen(QtGui.QPixmap("1.png"))
+    splash = QtWidgets.QSplashScreen(QtGui.QPixmap("pyside_logo.png"))
     splash.showMessage("Загрузка данных... 0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
     splash.show()
     QtWidgets.QApplication.processEvents()
