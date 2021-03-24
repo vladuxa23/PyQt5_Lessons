@@ -1,6 +1,8 @@
 import sys
-from PyQt5 import QtWidgets, QtCore, QtGui
-
+try:
+    from PyQt5 import QtWidgets, QtCore, QtGui
+except:
+    from PySide2 import QtWidgets, QtCore, QtGui
 
 class TestSettings(QtWidgets.QMainWindow):
 
@@ -28,8 +30,6 @@ class TestSettings(QtWidgets.QMainWindow):
         self.lineEditTelephone = QtWidgets.QLineEdit()
         self.lineEditEMail = QtWidgets.QLineEdit()
 
-        # self.pushButtonPrint = QtWidgets.QPushButton("Распечатать")
-
         self.checkBox = QtWidgets.QCheckBox()
 
         layoutHName = QtWidgets.QHBoxLayout()
@@ -51,33 +51,35 @@ class TestSettings(QtWidgets.QMainWindow):
         layoutVMain.addLayout(layoutHTelephone)
         layoutVMain.addLayout(layoutHEMail)
         layoutVMain.addWidget(self.checkBox)
-        # layoutVMain.addWidget(self.pushButtonPrint)
 
         centralWidget.setLayout(layoutVMain)
 
     def loadData(self):
         self.settings = QtCore.QSettings("MyDataCard")
-        #
+
         self.lineEditName.setText(self.settings.value("Name", "Введите имя"))
         self.lineEditSurname.setText(self.settings.value("Surname", "Введите фамилия"))
         self.lineEditTelephone.setText(self.settings.value("Telephone", "Введите телефон"))
         self.lineEditEMail.setText(self.settings.value("EMail", "Введите e-mail"))
-        self.checkBox.setCheckState(self.settings.value("CheckState", 0))
+
+        if self.settings.value("CheckState") == "true":
+            self.checkBox.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBox.setCheckState(QtCore.Qt.Unchecked)
 
         # self.settings.clear()
 
     def closeEvent(self, event: QtGui.QCloseEvent) -> None:
+        pass
         self.settings.setValue("Name", self.lineEditName.text())
         self.settings.setValue("Surname", self.lineEditSurname.text())
         self.settings.setValue("Telephone", self.lineEditTelephone.text())
         self.settings.setValue("EMail", self.lineEditEMail.text())
-        self.settings.setValue("CheckState", self.checkBox.checkState())
-
-        self.settings.sync()
+        self.settings.setValue("CheckState", self.checkBox.isChecked())
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     windows = TestSettings()
     windows.show()
-    app.exec()
+    app.exec_()

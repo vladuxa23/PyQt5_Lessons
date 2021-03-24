@@ -7,10 +7,12 @@ class MyWidgets(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
 
-        # layout = QtWidgets.QHBoxLayout()
-        # self.abc = QtWidgets.QPushButton("abc")
-        # layout.addWidget(self.abc)
-        # self.setLayout(layout)
+
+
+        layout = QtWidgets.QHBoxLayout()
+        abc = QtWidgets.QPushButton("Текст кнопки")
+        layout.addWidget(abc)
+        self.setLayout(layout)
 
 
 if __name__ == "__main__":

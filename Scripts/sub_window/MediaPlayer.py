@@ -1,6 +1,5 @@
 import sys
-from PyQt5 import QtWidgets, QtCore, QtGui, QtMultimedia
-from functools import partial
+from PySide2 import QtWidgets, QtCore, QtGui, QtMultimedia
 
 
 class ProgressSlider(QtWidgets.QSlider):
@@ -33,7 +32,6 @@ class ProgressSlider(QtWidgets.QSlider):
         return QtWidgets.QStyle.sliderValueFromPosition(self.minimum(), self.maximum(), p - sliderMin, sliderMax - sliderMin, option.upsideDown)
 
 
-
 class MediaPlayer(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
@@ -41,16 +39,55 @@ class MediaPlayer(QtWidgets.QMainWindow):
 
         self.initUI()
 
-        self.colModel = QtGui.QStandardItemModel()
-
+        self.currentPlayList = QtMultimedia.QMediaPlaylist()
         self.player = QtMultimedia.QMediaPlayer()
 
+        self.userAction = -1
 
-        self.pushButtonAddTrack.clicked.connect(self.addTrack)
-        self.pushButtonPlayMusic.clicked.connect(self.player.play)
-        self.pushButtonStopMusic.clicked.connect(self.player.stop)
+        # self.player.mediaStatusChanged.connect(self.qmp_mediaStatusChanged)
+        # self.player.stateChanged.connect(self.qmp_stateChanged)
+        # self.player.positionChanged.connect(self.qmp_positionChanged)
+        # self.player.volumeChanged.connect(self.qmp_volumeChanged)
+        self.player.setVolume(60)
 
+        # self.statusBar().showMessage("No Media ")
+        #
+        # self.colModel = QtGui.QStandardItemModel()
+        #
+        #
+        # self.pushButtonAddTrack.clicked.connect(self.addTrack)
+        # self.pushButtonPlayMusic.clicked.connect(self.player.play)
+        # self.pushButtonStopMusic.clicked.connect(self.player.stop)
 
+    def initUI(self):
+        self.setWindowTitle("MusicPlayer")
+        self.setFixedSize(300, 450)
+
+        centralWidget = QtWidgets.QWidget()
+        self.setCentralWidget(centralWidget)
+
+        self.treeViewMusicList = QtWidgets.QTreeView()
+
+        self.pushButtonAddTrack = QtWidgets.QPushButton("+", self)
+        self.pushButtonDelTrack = QtWidgets.QPushButton("-", self)
+        self.pushButtonPlayMusic = QtWidgets.QPushButton("Play", self)
+        self.pushButtonStopMusic = QtWidgets.QPushButton("Stop", self)
+
+        self.progressSliderTrack = ProgressSlider()
+        self.progressSliderTrack.setOrientation(QtCore.Qt.Horizontal)
+
+        layoutHButton = QtWidgets.QHBoxLayout()
+        layoutHButton.addWidget(self.pushButtonAddTrack)
+        layoutHButton.addWidget(self.pushButtonDelTrack)
+        layoutHButton.addWidget(self.pushButtonPlayMusic)
+        layoutHButton.addWidget(self.pushButtonStopMusic)
+
+        layoutV = QtWidgets.QVBoxLayout()
+        layoutV.addWidget(self.treeViewMusicList)
+        layoutV.addWidget(self.progressSliderTrack)
+        layoutV.addLayout(layoutHButton)
+
+        centralWidget.setLayout(layoutV)
 
     def addItemToColumnModel(self, path, trackTime):
         self.colModel.appendRow([QtGui.QStandardItem(str(path)),
@@ -72,33 +109,8 @@ class MediaPlayer(QtWidgets.QMainWindow):
         except IndexError:
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Трэк для воспроизведения не выбран")
 
-
-    def initUI(self):
-        centralWidget = QtWidgets.QWidget()
-        self.setCentralWidget(centralWidget)
-
-        self.treeViewMusisList = QtWidgets.QTreeView()
-
-        self.pushButtonAddTrack = QtWidgets.QPushButton("+", self)
-        self.pushButtonDelTrack = QtWidgets.QPushButton("-", self)
-        self.pushButtonPlayMusic = QtWidgets.QPushButton("Play", self)
-        self.pushButtonStopMusic = QtWidgets.QPushButton("Stop", self)
-
-        self.progressSliderTrack = ProgressSlider()
-        self.progressSliderTrack.setOrientation(QtCore.Qt.Horizontal)
-
-        layoutHButton = QtWidgets.QHBoxLayout()
-        layoutHButton.addWidget(self.pushButtonAddTrack)
-        layoutHButton.addWidget(self.pushButtonDelTrack)
-        layoutHButton.addWidget(self.pushButtonPlayMusic)
-        layoutHButton.addWidget(self.pushButtonStopMusic)
-
-        layoutV = QtWidgets.QVBoxLayout()
-        layoutV.addWidget(self.treeViewMusisList)
-        layoutV.addWidget(self.progressSliderTrack)
-        layoutV.addLayout(layoutHButton)
-
-        centralWidget.setLayout(layoutV)
+    def exitAction(self):
+        exitAc = QtWidgets.QAction("&Exit", self)
 
 
 

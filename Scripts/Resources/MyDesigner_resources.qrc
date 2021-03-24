@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="layoutICO">
+    <file>horizonatllayout.ico</file>
+    <file>verticallayout.ico</file>
+  </qresource>
+</RCC>

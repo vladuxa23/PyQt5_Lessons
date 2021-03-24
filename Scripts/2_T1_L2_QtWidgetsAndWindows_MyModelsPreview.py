@@ -11,11 +11,6 @@ class MyModelsPreview(QtWidgets.QMainWindow):
 
         self.initUi()
 
-
-
-
-
-
     def initUi(self):
         # центральное окно
         centralWidget = QtWidgets.QWidget()
@@ -66,8 +61,6 @@ class MyModelsPreview(QtWidgets.QMainWindow):
         return sim
 
 # Основное отличие в QStringListModel и QStandardItemModel
-
-
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

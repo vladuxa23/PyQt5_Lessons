@@ -1,0 +1,130 @@
+<RCC>
+  <qresource prefix="ico">
+    <file>ico/Address Book.ico</file>
+    <file>ico/Airport.ico</file>
+    <file>ico/AOL.ico</file>
+    <file>ico/Applications Folder.ico</file>
+    <file>ico/Applications.ico</file>
+    <file>ico/Backup.ico</file>
+    <file>ico/Burn.ico</file>
+    <file>ico/Calculator.ico</file>
+    <file>ico/CD.ico</file>
+    <file>ico/CD-R.ico</file>
+    <file>ico/CD-RW.ico</file>
+    <file>ico/Classic Folder.ico</file>
+    <file>ico/Clipping Picture.ico</file>
+    <file>ico/Clipping Sound.ico</file>
+    <file>ico/Clipping Text.ico</file>
+    <file>ico/Clipping Unknown.ico</file>
+    <file>ico/Computer.ico</file>
+    <file>ico/Connect.ico</file>
+    <file>ico/Customize.ico</file>
+    <file>ico/Delete.ico</file>
+    <file>ico/Desktastic.ico</file>
+    <file>ico/Desktop.ico</file>
+    <file>ico/Director.ico</file>
+    <file>ico/Documents Folder.ico</file>
+    <file>ico/Documents.ico</file>
+    <file>ico/Dreamweaver.ico</file>
+    <file>ico/Drop Box Folder.ico</file>
+    <file>ico/Drop Box.ico</file>
+    <file>ico/Drop Stuff.ico</file>
+    <file>ico/DVD Player.ico</file>
+    <file>ico/DVD.ico</file>
+    <file>ico/DVD-R.ico</file>
+    <file>ico/DVD-RAM.ico</file>
+    <file>ico/DVD-RW.ico</file>
+    <file>ico/Eject.ico</file>
+    <file>ico/Empty Trash.ico</file>
+    <file>ico/Entourage.ico</file>
+    <file>ico/Excel.ico</file>
+    <file>ico/External HD.ico</file>
+    <file>ico/Favorites Folder.ico</file>
+    <file>ico/Favorites.ico</file>
+    <file>ico/File Server.ico</file>
+    <file>ico/Finance Folder.ico</file>
+    <file>ico/Finances.ico</file>
+    <file>ico/Find.ico</file>
+    <file>ico/Finder.ico</file>
+    <file>ico/Firewire HD.ico</file>
+    <file>ico/Firewire.ico</file>
+    <file>ico/Fireworks.ico</file>
+    <file>ico/Flash.ico</file>
+    <file>ico/Floppy Disk.ico</file>
+    <file>ico/Freehand.ico</file>
+    <file>ico/Games Folder.ico</file>
+    <file>ico/Games.ico</file>
+    <file>ico/GarageBand.ico</file>
+    <file>ico/Generic Folder.ico</file>
+    <file>ico/Get Info.ico</file>
+    <file>ico/Go.ico</file>
+    <file>ico/Home Folder.ico</file>
+    <file>ico/Home.ico</file>
+    <file>ico/HTML Editor.ico</file>
+    <file>ico/iCal.ico</file>
+    <file>ico/iChat AV.ico</file>
+    <file>ico/iDisk.ico</file>
+    <file>ico/iDVD.ico</file>
+    <file>ico/iMovie.ico</file>
+    <file>ico/Internal HD.ico</file>
+    <file>ico/iPhoto.ico</file>
+    <file>ico/iSync.ico</file>
+    <file>ico/iTunes.ico</file>
+    <file>ico/Library Folder.ico</file>
+    <file>ico/Library.ico</file>
+    <file>ico/Location AFP.ico</file>
+    <file>ico/Location File.ico</file>
+    <file>ico/Location FTP.ico</file>
+    <file>ico/Location Generic.ico</file>
+    <file>ico/Location HTTP.ico</file>
+    <file>ico/Location MailTo.ico</file>
+    <file>ico/Location News.ico</file>
+    <file>ico/Mail.ico</file>
+    <file>ico/Memory Stick.ico</file>
+    <file>ico/MO Disk.ico</file>
+    <file>ico/Movies Folder.ico</file>
+    <file>ico/Movies.ico</file>
+    <file>ico/Music Folder.ico</file>
+    <file>ico/Music.ico</file>
+    <file>ico/Network.ico</file>
+    <file>ico/New Folder.ico</file>
+    <file>ico/Paint App.ico</file>
+    <file>ico/Pictures Folder.ico</file>
+    <file>ico/Pictures.ico</file>
+    <file>ico/PowerPoint.ico</file>
+    <file>ico/Preview.ico</file>
+    <file>ico/Private Folder.ico</file>
+    <file>ico/Private.ico</file>
+    <file>ico/Public Folder.ico</file>
+    <file>ico/Public.ico</file>
+    <file>ico/Removable HD.ico</file>
+    <file>ico/Safari.ico</file>
+    <file>ico/Sites Folder.ico</file>
+    <file>ico/Smart Media.ico</file>
+    <file>ico/Snapz Pro.ico</file>
+    <file>ico/Spamfire.ico</file>
+    <file>ico/Stickies.ico</file>
+    <file>ico/Stuffit Expander.ico</file>
+    <file>ico/Super Disk.ico</file>
+    <file>ico/System Folder.ico</file>
+    <file>ico/System Preferences.ico</file>
+    <file>ico/Terminal.ico</file>
+    <file>ico/Text Edit.ico</file>
+    <file>ico/Transmit.ico</file>
+    <file>ico/Trash Full.ico</file>
+    <file>ico/USB HD.ico</file>
+    <file>ico/USB.ico</file>
+    <file>ico/User.ico</file>
+    <file>ico/Users Folder.ico</file>
+    <file>ico/Utilities Folder.ico</file>
+    <file>ico/Utilities.ico</file>
+    <file>ico/Virtual PC.ico</file>
+    <file>ico/Windows Media Player.ico</file>
+    <file>ico/Word.ico</file>
+    <file>ico/Zip Disk.ico</file>
+  </qresource>
+  <qresource prefix="img">
+    <file>img/currency.jpg</file>
+    <file>img/pyside_logo.png</file>
+  </qresource>
+</RCC>
