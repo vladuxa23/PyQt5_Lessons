@@ -2,33 +2,43 @@ from PySide2 import QtCore, QtWidgets, QtGui
 
 
 class ProgressBarDelegate(QtWidgets.QStyledItemDelegate):
-    def __init__(self, parent, color):
+    def __init__(self, parent, color, row):
         super(ProgressBarDelegate, self).__init__(parent)
         self.color = color
+        self.row = row
 
     def paint(self, painter, option, index):
         if index.column() == 2:
-            if (isinstance(self.parent(), QtWidgets.QAbstractItemView)
-                    and self.parent().model() is index.model()):
-                self.parent().openPersistentEditor(index)
-            QtWidgets.QStyledItemDelegate.paint(self, painter, option, index)
+            if index.row() == self.row.row():
+                # print(index.column(), index.row(), self.row.row(), self.color)
+                if (isinstance(self.parent(), QtWidgets.QAbstractItemView)
+                        and self.parent().model() is index.model()):
+                    self.parent().openPersistentEditor(index)
+                    QtWidgets.QStyledItemDelegate.paint(self, painter, option, index)
         else:
-            QtWidgets.QStyledItemDelegate.paint(self, painter, option, index)
+            pass
 
     def createEditor(self, parent: QtWidgets.QWidget, option: QtWidgets.QStyleOptionViewItem,
                      index: QtCore.QModelIndex) -> QtWidgets.QWidget:
-
+        print("12345")
         editor = QtWidgets.QProgressBar(parent)
+        print(editor)
         editor.setRange(0, 0)
+        print(index.data())
+        editor.setValue(-1)
         editor.setTextVisible(False)
-        editor.setStyleSheet("QProgressBar:chunk {background-color:" + self.color + "; width: 20px; margin: 0.5px}")
-        editor.valueChanged.connect(self.setMyStyle)
-
+        editor.setStyleSheet("QProgressBar:chunk {background-color:" + self.color + "; width: 20px; margin: 3px;  border: 1px solid black; border-radius: 11px}")
+        editor.valueChanged.connect(lambda: print("123"))
         return editor
 
-    @staticmethod
-    def setMyStyle():
-        print("123")
+    def setModelData(self, editor: QtWidgets.QWidget, model: QtCore.QAbstractItemModel, index: QtCore.QModelIndex) -> None:
+        try:
+            model.setData(index, editor.currentText(), QtCore.Qt.EditRole)
+        except AttributeError:
+            pass
+
+    def setEditorData(self, editor, index) -> None:
+        ...
 
 
 class PushButtonDelegate(QtWidgets.QStyledItemDelegate):
@@ -67,18 +77,19 @@ class MyWidgetsForm(QtWidgets.QMainWindow):
         if self.tableView.model().index(pushRow.row(), 2).data() is None or self.tableView.model().index(pushRow.row(),
                                                                                                          2).data() == 0:
 
-            prbarDelegate = ProgressBarDelegate(self.tableView, "green")
-            self.tableView.setItemDelegateForColumn(pushRow.row(), prbarDelegate)
-
+            prbarDelegate = ProgressBarDelegate(self.tableView, "green", pushRow)
+            print(prbarDelegate)
+            self.tableView.setItemDelegateForColumn(2, prbarDelegate)
             self.tableView.model().setData(self.tableView.model().index(pushRow.row(), 2), 1,
                                            QtCore.Qt.DisplayRole)
 
         elif self.tableView.model().index(pushRow.row(), 2).data() == 1:
-            prbarDelegate = ProgressBarDelegate(self.tableView, "red")
-            self.tableView.setItemDelegateForColumn(pushRow.row(), prbarDelegate)
-
+            prbarDelegate = ProgressBarDelegate(self.tableView, "red", pushRow)
+            self.tableView.setItemDelegateForColumn(2, prbarDelegate)
             self.tableView.model().setData(self.tableView.model().index(pushRow.row(), 2), 0,
                                            QtCore.Qt.DisplayRole)
+
+        self.tableView.viewport().repaint()
 
     def initUi(self):
         self.setFixedSize(600, 300)
@@ -93,7 +104,6 @@ class MyWidgetsForm(QtWidgets.QMainWindow):
     def initModel(self):
         headers = ['Путь', 'Управление', 'Прогресс']
         self.pbDelegate = PushButtonDelegate(self.tableView)
-        prbarDelegate = ProgressBarDelegate(self.tableView, "red")
         self.stm = QtGui.QStandardItemModel()
         self.stm.setHorizontalHeaderLabels(headers)
 
@@ -101,12 +111,9 @@ class MyWidgetsForm(QtWidgets.QMainWindow):
             self.stm.setItem(row, 0, QtGui.QStandardItem("some_path" + str(row)))
             self.stm.setItem(row, 1, QtGui.QStandardItem())
 
-
-
         self.tableView.setModel(self.stm)
         self.tableView.clearSpans()
         self.tableView.setItemDelegateForColumn(1, self.pbDelegate)
-        self.tableView.setItemDelegateForColumn(2, prbarDelegate)
         self.tableView.resizeColumnsToContents()
         self.tableView.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 

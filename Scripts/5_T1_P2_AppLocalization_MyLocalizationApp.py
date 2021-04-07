@@ -3,7 +3,7 @@ from functools import partial
 from PySide2 import QtCore, QtWidgets
 
 # https://github.com/thurask/Qt-Linguist/releases/download/20201205/linguist_5.15.2.zip
-# lupdate main.py -ts to_en.ts
+# lupdate plotWithMPL.py -ts to_en.ts
 # lrelease to_en2.ts to_en.qm
 
 class MyTranslateApp(QtWidgets.QMainWindow):

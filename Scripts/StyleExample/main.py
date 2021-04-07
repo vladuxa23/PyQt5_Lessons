@@ -1,4 +1,5 @@
 import sys
+import breeze_resources
 try:
     from PyQt5 import QtWidgets, QtCore, QtGui
 except:
@@ -11,8 +12,6 @@ class TestSettings(QtWidgets.QMainWindow):
 
         self.initUI()
         self.loadData()
-
-        self.repaintUI()
 
     def initUI(self):
         centralWidget = QtWidgets.QWidget()
@@ -59,34 +58,6 @@ class TestSettings(QtWidgets.QMainWindow):
 
         centralWidget.setLayout(layoutVMain)
 
-    def repaintUI(self):
-        pass
-        # palette = self.palette()
-        # palette.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window, QtGui.QColor("#321123"))
-        # self.setPalette(palette)
-
-        # self.pushButtonPrint.setAutoFillBackground(True)
-        # # bpal = QtGui.QPalette()
-        # bpal = self.pushButtonPrint.palette()
-        # role = self.pushButtonPrint.backgroundRole()
-        # bpal.setColor(QtGui.QPalette.Active, QtGui.QPalette.Button, QtGui.QColor("green"))
-        # # bpal.setColor(role, QtGui.QColor("red"))
-        # self.pushButtonPrint.setPalette(bpal)
-        # self.pushButtonPrint.setStyleSheet("background-color: #444444'")
-
-        self.setStyleSheet("""
-        QMainWindow{
-            background-color: #a29123;
-        }
-        QPushButton:pressed{
-            background-color: #d52214;
-        }
-        QLineEdit:hover{
-            background-color: #b43321;
-        }
-
-        """)
-
     def loadData(self):
         self.settings = QtCore.QSettings("MyDataCard")
 
@@ -112,7 +83,11 @@ class TestSettings(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
 
+    file = QtCore.QFile(":/dark.qss")
+    file.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
+    stream = QtCore.QTextStream(file)
+    app.setStyleSheet(stream.readAll())
+
     windows = TestSettings()
     windows.show()
-
     app.exec_()
