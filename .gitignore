@@ -1,9 +1,9 @@
 *.idea/*
 *venv/*
 *__pycache__*
-*descriptions.docx*
-*descriptions.xlsx*
-*.pptx*
+*Descriptions/*
+*.pptx
 *Thumbs*
-*.ico*
-*test1.py
+*.ico
+*test*
+*.mp4

@@ -2,6 +2,7 @@ import sys
 from PySide2 import QtWidgets, QtCore
 from functools import partial
 from sub_window.MediaPlayer import MediaPlayer
+from sub_window.CustomBar import PowerBar
 
 
 class MyMDIApp(QtWidgets.QMainWindow):
@@ -23,15 +24,16 @@ class MyMDIApp(QtWidgets.QMainWindow):
         self.widgetPanel = QtWidgets.QDockWidget("Программы", self)
         self.widgetPanel.setWidget(self.programListWidget)
 
-        self.programListWidget.addItems(["Плеер"])
+        self.programListWidget.addItems(["Плеер", "Громкость"])
 
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.widgetPanel)
 
     def addSubWidget(self):
         self.player = MediaPlayer()
+        self.customBar = PowerBar()
         print(self.player)
 
-        self.PROGRAMM_LIST = {"Плеер": self.player}
+        self.PROGRAMM_LIST = {"Плеер": self.player, "Громкость": self.customBar}
 
         self.mdiArea.addSubWindow(self.PROGRAMM_LIST[self.programListWidget.currentItem().text()])
         self.PROGRAMM_LIST[self.programListWidget.currentItem().text()].show()

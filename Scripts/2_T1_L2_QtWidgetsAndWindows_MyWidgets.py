@@ -1,16 +1,23 @@
 import sys
 from PySide2 import QtWidgets
 
-class MyWidgets(QtWidgets.QMainWindow):
+class MyWidgets(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
-        QtWidgets.QMainWindow.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.initUi()
 
-        self.pushButton.clicked.connect(lambda: print("QPushButton is clicked"))  # Добавляем слот для сигнала нажатия
+        # self.pushButton.clicked.connect(lambda: print("QPushButton is clicked"))  # Добавляем слот для сигнала нажатия
 
     def initUi(self):
-        self.pushButton = QtWidgets.QPushButton("Кнопка", parent=self)  # Добавляем QPushButton на форму
+        # self.pushButton = QtWidgets.QPushButton("Кнопка", parent=self)  # Добавляем QPushButton на форму
+        layout = QtWidgets.QVBoxLayout()
+        tb = QtWidgets.QTabWidget()
+        tb.addTab(QtWidgets.QLabel("1234"), "123")
+        tb.setTabPosition(QtWidgets.QTabWidget.West)
+        layout.addWidget(tb)
+
+        self.setLayout(layout)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,6 @@ class MyModelsPreview(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.rndWords = RandomWords()
-
         self.initUi()
 
     def initUi(self):
@@ -18,12 +17,16 @@ class MyModelsPreview(QtWidgets.QMainWindow):
 
         self.setMinimumSize(500, 700)
         self.setMaximumSize(500, 700)
+        # self.setFixedSize(500, 700)
         # модели
         lm = self.createQStringListModel()
 
         # виджеты
         self.comboBox = QtWidgets.QComboBox()
-        self.comboBox.setModel(lm)
+        proxy1 = QtCore.QSortFilterProxyModel()
+        proxy1.setSourceModel(lm)
+        proxy1.setFilterWildcard("?????????")
+        self.comboBox.setModel(proxy1)
 
         self.listView = QtWidgets.QListView()
         self.listView.setModel(lm)
@@ -33,7 +36,14 @@ class MyModelsPreview(QtWidgets.QMainWindow):
         self.tableView.resizeColumnsToContents()  # Нежелательно делать для большого количества данных
 
         self.treeView = QtWidgets.QTreeView()
-        self.treeView.setModel(self.createQStandardItemModel())
+        # self.treeView.setModel(self.createQStandardItemModel())
+        self.treeView.setModel(self.createTreeModel())
+
+        self.columnView = QtWidgets.QColumnView()
+        md = QtWidgets.QDirModel()
+        index = md.index(1,0)
+        print(md.data(index, 0))
+        self.columnView.setModel(md)
 
         # компоновка
         layoutV1 = QtWidgets.QVBoxLayout()
@@ -41,17 +51,19 @@ class MyModelsPreview(QtWidgets.QMainWindow):
         layoutV1.addWidget(self.listView)
         layoutV1.addWidget(self.tableView)
         layoutV1.addWidget(self.treeView)
+        layoutV1.addWidget(self.columnView)
 
         centralWidget.setLayout(layoutV1)
 
-
     def createQStringListModel(self):
         lst = self.rndWords.get_random_words()[:]
+        # lst = self.rndWords
         return QtCore.QStringListModel(lst)
 
     def createQStandardItemModel(self):
         sim = QtGui.QStandardItemModel()
         lst = self.rndWords.get_random_words()
+        # lst = self.rndWords
         for row, elem in enumerate(lst):
             item1 = QtGui.QStandardItem(str(row+1))
             item2 = QtGui.QStandardItem(lst[row])
@@ -60,7 +72,24 @@ class MyModelsPreview(QtWidgets.QMainWindow):
 
         return sim
 
-# Основное отличие в QStringListModel и QStandardItemModel
+    def createTreeModel(self):
+        sim = QtGui.QStandardItemModel()
+        rootItem1 = QtGui.QStandardItem("QAbstractItemView")
+        rootItem2 = QtGui.QStandardItem("Базовый класс")
+        item1 = QtGui.QStandardItem("QListView")
+        item2 = QtGui.QStandardItem("Список")
+        rootItem1.appendRow([item1, item2])
+        item1 = QtGui.QStandardItem("QTableView")
+        item2 = QtGui.QStandardItem("Таблица")
+        rootItem1.appendRow([item1, item2])
+        item1 = QtGui.QStandardItem("QTreeView")
+        item2 = QtGui.QStandardItem("Иерархический список")
+        rootItem1.appendRow([item1, item2])
+        sim.appendRow([rootItem1, rootItem2])
+        sim.setHorizontalHeaderLabels(["Класс", "Описание"])
+
+        return sim
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

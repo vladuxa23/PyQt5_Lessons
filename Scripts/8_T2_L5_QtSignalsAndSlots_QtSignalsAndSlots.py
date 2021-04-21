@@ -3,13 +3,12 @@ from PySide2 import QtCore, QtWidgets, QtGui
 
 
 def print_something():
-    print("Вызов функции")
+    print("Ссылка на функцию")
+
 
 class MySignalsExample(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
-
-
 
         t = Test()
 
@@ -22,21 +21,27 @@ class MySignalsExample(QtWidgets.QMainWindow):
         self.cmbbx.addItems(["1", "2", "3"])
         self.cmbbx.move(0, 100)
 
-        self.button1.clicked.connect(lambda: print(f"button1 отправлен сигнал"))
+        # Ссылка на функцию
+        # self.button1.clicked.connect(print_something)
 
-        self.cmbbx.currentTextChanged.connect(
-            lambda: print(f"Установлено значение {self.cmbbx.currentText()}"))
+        # Метод класса
+        # self.button2.clicked.connect(self.print_name)
 
-        self.button2.clicked.connect(t.on_clicked)
-        self.button2.clicked.connect(t)
+        # Ссылка на класс с методом __call__
+        # self.button2.clicked.connect(Test())
 
-class Test():
-    def __call__(self, *args, **kwargs):
-        pass
-    def on_clicked(self):
+        # Анонимная функция
+        # self.cmbbx.currentTextChanged.connect(
+        #     lambda: print(f"Установлено значение {self.cmbbx.currentText()}"))
+        # self.button1.clicked.connect(lambda: print(f"button1 отправлен сигнал"))
+
+    def print_name(self):
         print("Метод класса")
 
 
+class Test:
+    def __call__(self, *args, **kwargs):
+        print(f"Отработал __call__")
 
 
 if __name__ == "__main__":
