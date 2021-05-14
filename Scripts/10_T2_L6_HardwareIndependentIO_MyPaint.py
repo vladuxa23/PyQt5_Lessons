@@ -1,11 +1,8 @@
 from PySide2 import QtCore, QtWidgets, QtGui
 
-
 # TODO: 1.   Придумать как обработать ситуацию с чёрным цветом
 #       2.   Кнопка сохранить изображение
 #       3*.  Сделать кисть "Распылитель"
-#       4**. Удивить меня
-
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -17,12 +14,12 @@ class Window(QtWidgets.QMainWindow):
         self.sliderSize.valueChanged.connect(self.setBrushSize)
         self.pbColor.clicked.connect(self.setColor)
 
-        img = QtGui.QImage()
-        img = QtGui.QImage(width=10, height=10)
-        img = QtGui.QImage(QtCore.QSize(100, 100),
-                           QtGui.QImage.Format_ARGB32_Premultiplied)
-        img = QtGui.QImage(fileName="someImg.png")
-        img = QtGui.QImage(QtGui.QImage())
+        # img = QtGui.QImage()
+        # img = QtGui.QImage(width=10, height=10)
+        # img = QtGui.QImage(QtCore.QSize(100, 100),
+        #                    QtGui.QImage.Format_ARGB32_Premultiplied)
+        # img = QtGui.QImage(fileName="someImg.png")
+        # img = QtGui.QImage(QtGui.QImage())
 
 
     def initUI(self):

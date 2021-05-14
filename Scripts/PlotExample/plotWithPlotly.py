@@ -16,9 +16,9 @@ class Widget(QtWidgets.QWidget):
         vlayout.addWidget(self.button, alignment=QtCore.Qt.AlignHCenter)
         vlayout.addWidget(self.browser)
 
-        # self.button.clicked.connect(self.show_graph1)
+        self.button.clicked.connect(self.show_graph1)
         # self.button.clicked.connect(self.show_graph2)
-        self.button.clicked.connect(self.show_graph3)
+        # self.button.clicked.connect(self.show_graph3)
         self.resize(1000, 800)
 
     def show_graph1(self):

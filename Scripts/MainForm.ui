@@ -202,7 +202,7 @@
                  </size>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="page">
                  <property name="geometry">
@@ -304,8 +304,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>98</width>
-                   <height>89</height>
+                   <width>380</width>
+                   <height>366</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -333,8 +333,8 @@ p, li { white-space: pre-wrap; }
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>98</width>
-                   <height>89</height>
+                   <width>380</width>
+                   <height>366</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -355,8 +355,8 @@ p, li { white-space: pre-wrap; }
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>330</width>
-                   <height>201</height>
+                   <width>380</width>
+                   <height>366</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -375,9 +375,9 @@ p, li { white-space: pre-wrap; }
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="pushButtonOpen">
                 <property name="text">
-                 <string>PushButton</string>
+                 <string>Открыть</string>
                 </property>
                </widget>
               </item>
@@ -396,9 +396,9 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="pushButtonAccept">
                 <property name="text">
-                 <string>PushButton</string>
+                 <string>Применить</string>
                 </property>
                </widget>
               </item>

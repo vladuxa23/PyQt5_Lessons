@@ -5,21 +5,36 @@ from PySide2 import QtCore, QtWidgets
 class MyApp(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
-
         self.t = TestThread()
+        self.initUi()
 
-        self.button = QtWidgets.QPushButton("start", self)
-        self.button.move(0, 30)
-        # self.button.clicked.connect(self.myTimer)
+    def initUi(self):
+        centralWidget = QtWidgets.QWidget()
+        self.setCentralWidget(centralWidget)
+
+        layout = QtWidgets.QVBoxLayout()
+
+        self.button = QtWidgets.QPushButton("start")
         self.button.clicked.connect(self.t.start)
 
-        self.button2 = QtWidgets.QPushButton("stop", self)
-        self.button2.move(0, 60)
+        self.button2 = QtWidgets.QPushButton("stop")
         # self.button.clicked.connect(self.myTimer)
         self.button2.clicked.connect(self.stopThread)
 
-        self.lineEdit = QtWidgets.QLineEdit(self)
+        self.lineEdit = QtWidgets.QLineEdit()
         self.lineEdit.setEnabled(False)
+
+        self.prBar = QtWidgets.QProgressBar()
+        self.prBar.setRange(0, 100)
+        self.prBar.setValue(0)
+        self.prBar.setTextVisible(True)
+
+        layout.addWidget(self.button)
+        layout.addWidget(self.button2)
+        layout.addWidget(self.lineEdit)
+        layout.addWidget(self.prBar)
+
+        centralWidget.setLayout(layout)
 
         self.t.started.connect(lambda: print("Поток запущен"))
         self.t.finished.connect(lambda: print("Поток завершен"))
@@ -28,13 +43,14 @@ class MyApp(QtWidgets.QMainWindow):
 
     def setLineEditText(self, text):
         self.lineEdit.setText(text)
+        self.prBar.setValue(int(text))
 
     def stopThread(self):
         self.t.status = False
 
     @QtCore.Slot()
     def myTimer(self):
-        for _ in range(1000, 0, -1):
+        for _ in range(5, 0, -1):
             self.lineEdit.setText(str(_))
             time.sleep(1)
             QtWidgets.QApplication.processEvents()
@@ -45,11 +61,13 @@ class TestThread(QtCore.QThread):
 
     def run(self) -> None:
         self.status = True
-        count = 1000
+        count = 0
         while self.status:
             time.sleep(1)
             self.mysignal.emit(str(count))
-            count -= 1
+            count += 1
+            if count == 100:
+                break
 
 
 if __name__ == "__main__":

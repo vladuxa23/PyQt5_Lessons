@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="ico">
+    <file>Resources/ui/ico/Address Book.ico</file>
+    <file>Resources/ui/ico/Airport.ico</file>
+    <file>Resources/ui/ico/AOL.ico</file>
+  </qresource>
+  <qresource prefix="img">
+    <file>Resources/ui/img/pyside_logo.png</file>
+  </qresource>
+</RCC>

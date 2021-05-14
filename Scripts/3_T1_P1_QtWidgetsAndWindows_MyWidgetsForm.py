@@ -1,7 +1,7 @@
 from PySide2 import QtCore, QtWidgets, QtGui
 from ui import mainTestForm
-import ui.my_resources
 import time
+import my_resources
 
 class MyWidgetsForm(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
@@ -10,8 +10,8 @@ class MyWidgetsForm(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
     def loadGUI(self, sp):
-        self.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(":/ico/ico/Desktop.ico")))
-        self.ui.pushButton_2.setIcon(QtGui.QIcon(QtGui.QPixmap(":/ico/ico/Backup.ico")))
+        self.setWindowIcon(QtGui.QIcon(":/ico/ico/Desktop.ico"))
+        self.ui.pushButton_2.setIcon(QtGui.QIcon(":/ico/ico/Backup.ico"))
 
         for _ in range(100):
             time.sleep(0.05)
@@ -25,7 +25,9 @@ if __name__ == "__main__":
 
     splash = QtWidgets.QSplashScreen(QtGui.QPixmap(":/img/img/pyside_logo.png"))
     splash.showMessage("Загрузка данных... 0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
+    splash.move(-1000, 100)
     splash.show()
+
 
     myapp = MyWidgetsForm()
     myapp.loadGUI(splash)

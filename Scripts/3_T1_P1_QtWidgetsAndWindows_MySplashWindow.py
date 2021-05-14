@@ -1,6 +1,6 @@
 import time
 from PySide2 import QtCore, QtWidgets, QtGui
-import ui.my_resources
+from Resources.ui import my_resources
 
 
 class MySpalshExample(QtWidgets.QMainWindow):
@@ -17,7 +17,7 @@ class MySpalshExample(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
-    res = my_resources
+
     splash = QtWidgets.QSplashScreen(QtGui.QPixmap(":/img/img/pyside_logo.png"))
     splash.showMessage("Загрузка данных... 0%", QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom, QtCore.Qt.white)
     splash.show()

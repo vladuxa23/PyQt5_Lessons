@@ -10,36 +10,43 @@ class MyEventHandler(QtWidgets.QMainWindow):
         self.button2 = QtWidgets.QPushButton("2", self)
         self.button2.move(0, 50)
 
-
-
-
         self.button2.installEventFilter(self)
 
-    def closeEvent(self, event):
-        print("work closeEvent")
-        # event.accept()
+    # def closeEvent(self, event):
+    #     reply = QtWidgets.QMessageBox.question(self, "Закрыть окно?",
+    #                                            "Вы действительно хотите закрыть окно?",
+    #                                            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+    #                                            QtWidgets.QMessageBox.No)
+    #     if reply == QtWidgets.QMessageBox.Yes:
+    #         event.accept()
+    #     else:
+    #         event.ignore()
 
-    def event(self, event: QtCore.QEvent) -> bool:
-        if event.type() == QtCore.QEvent.Type.Close:
-            event.setAccepted(False)
-        return QtWidgets.QWidget.event(self, event)
+    # def event(self, event: QtCore.QEvent) -> bool:
+    #     # print(event.type())
+    #     if event.type() == QtCore.QEvent.Type.Wheel:
+    #         print(event.angleDelta())
+            # print(f"Ширина: {event.size().width()}")
+            # print(f"Старая ширина: {event.oldSize().width()}")
+            # print(f"Высота: {self.size().height()}")
 
-        # reply = QtWidgets.QMessageBox.question(self, "Привет",
-        #                                        "Ура",
-        #                                        QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-        #                                        QtWidgets.QMessageBox.No)
-        # if reply == QtWidgets.QMessageBox.Yes:
-        #     event.accept()
-        # else:
-        #     event.ignore()
+        # return QtWidgets.QWidget.event(self, event)
 
     def eventFilter(self, watched: QtCore.QObject, event: QtCore.QEvent) -> bool:
+        if watched == self.button2 and event.type() == QtCore.QEvent.KeyPress:
+            print("key pressed")
+        if watched == self.button2 and event.type() == QtCore.QEvent.MouseButtonDblClick:
+            print("mouse pressed")
 
         return super(MyEventHandler, self).eventFilter(watched, event)
 
-    # def mouseDoubleClickEvent(self, event: QtGui.QMouseEvent) -> None:
-    #     print(event)
-    #
+    def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
+        print(event.text())
+
+    def mouseDoubleClickEvent(self, event: QtGui.QMouseEvent) -> None:
+        print(event.type())
+
+
 
 
 if __name__ == "__main__":

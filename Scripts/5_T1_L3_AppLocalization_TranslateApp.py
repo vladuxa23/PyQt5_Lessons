@@ -16,7 +16,7 @@ class TranslateAPIApp(QtWidgets.QMainWindow):
     def initUI(self):
 
         self.textEditFrom = QtWidgets.QTextEdit()
-        self.textEditFrom.setPlaceholderText("Введите русский текст")
+        self.textEditFrom.setPlaceholderText("Введите английский текст")
         self.textEditTo = QtWidgets.QTextEdit()
         self.textEditTo.setPlaceholderText("Переведённый текст")
         self.button = QtWidgets.QPushButton("Перевести")

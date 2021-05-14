@@ -23,7 +23,6 @@ class MyDrawRect(QtWidgets.QMainWindow):
         self.repaint()
 
 
-
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 

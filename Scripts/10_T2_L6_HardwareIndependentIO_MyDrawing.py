@@ -8,12 +8,18 @@ class MyDrawing(QtWidgets.QMainWindow):
 
     def paintEvent(self, event: QtGui.QPaintEvent) -> None:
         painter = QtGui.QPainter(self)
-        # pen = QtGui.QPen()
-        # pen.setWidth(15)
-        brush = QtGui.QBrush(QtCore.Qt.black)
-        brush.setStyle(QtCore.Qt.Dense7Pattern)
-        # pen.setBrush(brush)
-        # painter.setPen(pen)
+
+        # p1 = QtCore.QPoint(10, 10)
+        # p2 = QtCore.QPoint(100, 60)
+
+        # painter.drawLine(p1, p2)
+        pen = QtGui.QPen()
+        pen.setWidth(5)
+        pen.setStyle(QtCore.Qt.DashLine)
+        brush = QtGui.QBrush(QtCore.Qt.red)
+        brush.setStyle(QtCore.Qt.VerPattern)
+        pen.setBrush(brush)
+        painter.setPen(pen)
 
         rects = [QtCore.QRect(10, 10, 100, 60),
                  QtCore.QRect(20, 20, 100, 60)]

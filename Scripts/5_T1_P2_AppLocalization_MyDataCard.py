@@ -74,18 +74,18 @@ class TestSettings(QtWidgets.QMainWindow):
         # self.pushButtonPrint.setPalette(bpal)
         # self.pushButtonPrint.setStyleSheet("background-color: #444444'")
 
-        self.setStyleSheet("""
-        QMainWindow{
-            background-color: #a29123;
-        }
-        QPushButton:pressed{
-            background-color: #d52214;
-        }
-        QLineEdit:hover{
-            background-color: #b43321;
-        }
-
-        """)
+        # self.setStyleSheet("""
+        # QMainWindow{
+        #     background-color: #a29123;
+        # }
+        # QPushButton:pressed{
+        #     background-color: #d52214;
+        # }
+        # QLineEdit:hover{
+        #     background-color: #b43321;
+        # }
+        #
+        # """)
 
     def loadData(self):
         self.settings = QtCore.QSettings("MyDataCard")

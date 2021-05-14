@@ -13,7 +13,7 @@ class MyTranslateApp(QtWidgets.QMainWindow):
         super().__init__()
         self.initUI()  # Инициализируем дизайн приложения
 
-        self.QT_TRANSLATIONS_PATH = "venv//Lib//site-packages//PySide2//translations//"
+        self.QT_TRANSLATIONS_PATH = "C:/Python37/Lib/site-packages/PySide2/translations/"
 
         self.translator = QtCore.QTranslator(self)  # Инициализируем класс QTranslator, который потребуется для
         # локализации пользовательского текста в самой программе

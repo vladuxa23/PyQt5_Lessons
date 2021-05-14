@@ -1,13 +1,12 @@
 import sys
-try:
-    from PyQt5 import QtWidgets, QtCore, QtGui
-except:
-    from PySide2 import QtWidgets, QtCore, QtGui
+from PySide2 import QtWidgets, QtCore, QtGui
 
 class TestSettings(QtWidgets.QMainWindow):
 
     def __init__(self):
         super(TestSettings, self).__init__()
+
+        self.settings = QtCore.QSettings("MyDataCard")
 
         self.initUI()
         self.loadData()
@@ -55,7 +54,6 @@ class TestSettings(QtWidgets.QMainWindow):
         centralWidget.setLayout(layoutVMain)
 
     def loadData(self):
-        self.settings = QtCore.QSettings("MyDataCard")
 
         self.lineEditName.setText(self.settings.value("Name", "Введите имя"))
         self.lineEditSurname.setText(self.settings.value("Surname", "Введите фамилия"))
@@ -67,15 +65,13 @@ class TestSettings(QtWidgets.QMainWindow):
         else:
             self.checkBox.setCheckState(QtCore.Qt.Unchecked)
 
-        # self.settings.clear()
-
     def closeEvent(self, event: QtGui.QCloseEvent) -> None:
-        pass
         self.settings.setValue("Name", self.lineEditName.text())
         self.settings.setValue("Surname", self.lineEditSurname.text())
         self.settings.setValue("Telephone", self.lineEditTelephone.text())
         self.settings.setValue("EMail", self.lineEditEMail.text())
         self.settings.setValue("CheckState", self.checkBox.isChecked())
+        self.settings.setValue("Size", self.saveGeometry())
 
 
 if __name__ == "__main__":
